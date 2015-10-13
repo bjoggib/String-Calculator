@@ -38,4 +38,10 @@ public class CalculatorTest {
     public void testStringContainingNewLine(){
     	assertEquals(6, Calculator.add("1\n2,3"));
     }
+
+    @Test
+    public void testOtherDelimiters(){
+    	assertEquals(5, Calculator.add("//;//2,3"));
+    }
+
 }

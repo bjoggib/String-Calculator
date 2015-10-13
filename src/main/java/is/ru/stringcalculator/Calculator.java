@@ -6,10 +6,16 @@ public class Calculator {
 		if(text.equals("")){
 			return 0;
 		}
-		else if(text.contains(",")){
-			return sum(splitNumbers(text));
+		else if(text.contains("/") || text.contains(";")){
+			String temp = "";
+			for(int i = 0; i < text.length(); i++){
+				if(text.charAt(i) != '/' && text.charAt(i) != ';'){
+					temp += Character.toString(text.charAt(i));
+				}
+			}
+			return sum(splitNumbers(temp));
 		}
-		else if(text.contains("\n")){
+		else if(text.contains(",") || text.contains("\n")){
 			return sum(splitNumbers(text));
 		}
 		else
@@ -31,7 +37,4 @@ public class Calculator {
 		}
 		return total;
     }
-
-
-
 }
