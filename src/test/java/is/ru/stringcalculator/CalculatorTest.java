@@ -33,4 +33,9 @@ public class CalculatorTest {
     public void testEvenMoreNumbers(){
     	assertEquals(36, Calculator.add("1,2,3,4,5,6,7,8"));
     }
+
+    @Test 
+    public void testStringContainingNewLine(){
+    	assertEquals(6, Calculator.add("1\n2,3"));
+    }
 }
