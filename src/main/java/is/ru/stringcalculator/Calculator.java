@@ -44,7 +44,9 @@ public class Calculator {
 		    	throw new IllegalArgumentException(msg);
 		    } 
 		    else {
-		    	total += toInt(number);
+		    	if(toInt(number) < 1001){
+		    		total += toInt(number);
+		    	}
 		    	pos++;
 			}
 		}	

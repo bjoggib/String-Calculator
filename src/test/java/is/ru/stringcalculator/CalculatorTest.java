@@ -53,5 +53,14 @@ public class CalculatorTest {
     public void testNegativesWithMoreParamenters(){
         assertEquals(0, Calculator.add("1,-2,4"));
     }
-	
+
+    @Test
+    public void testNumbersGreaterThanThousand(){
+        assertEquals(2, Calculator.add("1001,2"));
+    }
+
+    @Test
+    public void testNumbersGreaterThanThousandB(){
+        assertEquals(0, Calculator.add("1001,2000"));
+    }	
 }
