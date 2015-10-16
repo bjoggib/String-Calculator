@@ -32,9 +32,22 @@ public class Calculator {
       
     private static int sum(String[] numbers){
  	    int total = 0;
+        int pos = 0;
         for(String number : numbers){
-		    total += toInt(number);
-		}
+		    if(toInt(number) < 0){
+		    	String msg = "Negatives not allowed: ";
+		    	for(int i = pos; i < numbers.length; i++){
+		    		if(toInt(numbers[i]) < 0){
+		    			msg += numbers[i] + ", ";
+		    		}
+		    	}
+		    	throw new IllegalArgumentException(msg);
+		    } 
+		    else {
+		    	total += toInt(number);
+		    	pos++;
+			}
+		}	
 		return total;
     }
 }

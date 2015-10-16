@@ -44,4 +44,10 @@ public class CalculatorTest {
     	assertEquals(5, Calculator.add("//;//2,3"));
     }
 
+    @Test(expected=IllegalArgumentException.class)
+    public void testNegatives(){
+        assertEquals(0, Calculator.add("-1,2"));
+    }
+
+	
 }
