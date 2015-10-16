@@ -49,5 +49,9 @@ public class CalculatorTest {
         assertEquals(0, Calculator.add("-1,2"));
     }
 
+    @Test(expected=IllegalArgumentException.class)
+    public void testNegativesWithMoreParamenters(){
+        assertEquals(0, Calculator.add("1,-2,4"));
+    }
 	
 }
