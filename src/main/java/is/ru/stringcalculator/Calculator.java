@@ -7,8 +7,12 @@ public class Calculator {
 			return 0;
 		}
 		else if(text.contains("[")){
-			int index = text.indexOf('[');
-			String newDelim = multDelim(text, index+1);
+			String newDelim = "";
+			for(int i = 0; i < text.length(); i++){
+				if(text.charAt(i) == '['){
+					newDelim += multDelim(text, i+1);
+				}
+			}
 			int i = 0;
 			while(!Character.isDigit(text.charAt(i))){
 				i++;
@@ -40,7 +44,7 @@ public class Calculator {
 	    if(delim == ""){
 	    	temp = ",|\n";
 	    }else{
-	    	temp = ",|\n|" + delim;
+	    	temp = ",|\n" + delim;
 	    }
 	    return numbers.split(temp);
 	}
@@ -69,10 +73,14 @@ public class Calculator {
     }
 
     private static String multDelim(String text, int index){
-    	String delim = "";
+    	String delim = "|";
     	int i = index;
     	while(text.charAt(i) != ']'){
-    		delim += "\\" + Character.toString(text.charAt(i));
+    		if(text.charAt(i) == '%'){
+    			delim += Character.toString(text.charAt(i)); 
+    		}else{
+    			delim += "\\" + Character.toString(text.charAt(i));	
+    		}
     		i++;
     	}
     	return delim;
