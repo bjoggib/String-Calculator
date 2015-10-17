@@ -6,6 +6,15 @@ public class Calculator {
 		if(text.equals("")){
 			return 0;
 		}
+		else if(text.contains("[")){
+			int index = text.indexOf('[');
+			String newDelim = multDelim(text, index+1);
+			int i = 0;
+			while(!Character.isDigit(text.charAt(i))){
+				i++;
+			}
+			return sum(splitNumbers(text.substring(i),newDelim));	
+		}
 		else if(text.contains("/") || text.contains(";")){
 			String temp = "";
 			for(int i = 0; i < text.length(); i++){
@@ -13,21 +22,27 @@ public class Calculator {
 					temp += Character.toString(text.charAt(i));
 				}
 			}
-			return sum(splitNumbers(temp));
+			return sum(splitNumbers(temp, ""));
 		}
 		else if(text.contains(",") || text.contains("\n")){
-			return sum(splitNumbers(text));
+			return sum(splitNumbers(text, ""));
 		}
-		else
-			return 1;
+		return 1;
+		
 	}
 
 	private static int toInt(String number){
 		return Integer.parseInt(number);
 	}
 
-	private static String[] splitNumbers(String numbers){
-	    return numbers.split("[,\n]");
+	private static String[] splitNumbers(String numbers, String delim){
+	    String temp;
+	    if(delim == ""){
+	    	temp = ",|\n";
+	    }else{
+	    	temp = ",|\n|" + delim;
+	    }
+	    return numbers.split(temp);
 	}
       
     private static int sum(String[] numbers){
@@ -51,5 +66,15 @@ public class Calculator {
 			}
 		}	
 		return total;
+    }
+
+    private static String multDelim(String text, int index){
+    	String delim = "";
+    	int i = index;
+    	while(text.charAt(i) != ']'){
+    		delim += "\\" + Character.toString(text.charAt(i));
+    		i++;
+    	}
+    	return delim;
     }
 }

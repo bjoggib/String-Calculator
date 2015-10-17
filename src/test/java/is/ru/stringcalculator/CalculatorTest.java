@@ -62,5 +62,10 @@ public class CalculatorTest {
     @Test
     public void testNumbersGreaterThanThousandB(){
         assertEquals(0, Calculator.add("1001,2000"));
+    }
+
+    @Test
+    public void testNewDelimiters(){
+        assertEquals(6, Calculator.add("//[***]\n1***2***3"));
     }	
-}
+}   
